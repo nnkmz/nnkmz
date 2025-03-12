@@ -1,17 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once '../vendor/autoload.php';
+require_once '../routes/web.php';
 
-use App\Controllers\HomeController;
-use App\Core\Router;
-
-// Initialize the router
-$router = new Router();
-
-// Define routes
-$router->get('/', [HomeController::class, 'index']);
-
-// Handle the request
-$router->resolve();
+try {
+    $router->resolve();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
